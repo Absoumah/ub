@@ -1,81 +1,67 @@
 package com.ubforge.ubforge.model;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.data.annotation.Id;
-import org.w3c.dom.Text;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-@EntityScan
+@Entity
 public class Task {
-    
-        @Id
-        private Long id;
-        private String title;
-        private Text description;
-        private String status;
-        private String priority;
-        private User assign_to;
-        private User author;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int task_id;
+    private String task_title;
+    private String task_description;
+    private String task_status;
+    private Issue issue;
+    //private User task_autor;
 
     
-        public Task() {
-        }
-    
-        public Task(String title, Text description) {
-            this.title = title;
-            this.description = description;
-    
-        }
-    
-        public Text getDescription() {
-            return description;
-        }
-    
-        public void setDescription(Text description) {
-            this.description = description;
-        }
-    
-        public Long getId() {
-            return id;
-        }
-    
-        public String getTitle() {
-            return title;
-        }
-    
-        public void setTitle(String title) {
-            this.title = title;
-        }
-        
-        public String getStatus() {
-            return status;
-        }
+    public Issue getIssue() {
+        return issue;
+    }
 
-        public void setStatus(String status) {
-            this.status = status;
-        }
+    public void setIssue(Issue issue) {
+        this.issue = issue;
+    }
 
-        public User getAssign_to() {
-            return assign_to;
-        }
+    // public User getTask_autor() {
+    //     return task_autor;
+    // }
 
-        public User getAuthor() {
-            return author;
-        }
+    // public void setTask_autor(User task_autor) {
+    //     this.task_autor = task_autor;
+    // }
 
-        public String getPriority() {
-            return priority;
-        }
+    public int getTask_id() {
+        return task_id;
+    }
 
-        public void setAssign_to(User assign_to) {
-            this.assign_to = assign_to;
-        }
+    public void setTask_id(int task_id) {
+        this.task_id = task_id;
+    }
 
-        public void setAuthor(User author) {
-            this.author = author;
-        }
+    public String getTask_title() {
+        return task_title;
+    }
 
-        public void setPriority(String priority) {
-            this.priority = priority;
-        }
-    
+    public void setTask_title(String task_title) {
+        this.task_title = task_title;
+    }
+
+    public String getTask_description() {
+        return task_description;
+    }
+
+    public void setTask_description(String task_description) {
+        this.task_description = task_description;
+    }
+
+    public String getTask_status() {
+        return task_status;
+    }
+
+    public void setTask_status(String task_status) {
+        this.task_status = task_status;
+    }
 }
