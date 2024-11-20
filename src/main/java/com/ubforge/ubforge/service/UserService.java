@@ -2,7 +2,6 @@ package com.ubforge.ubforge.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.ubforge.ubforge.model.User;
 import com.ubforge.ubforge.repository.UserRepository;
 
@@ -20,8 +19,11 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
-    public User updateUser(User user) {
-        return userRepository.save(user);
+    public void updateUser(int id, User user) {
+        if (userRepository.existsById(id)) {
+            user.setId(id);
+            userRepository.save(user);
+        }
     }
 
     public void deleteUser(Integer id) {

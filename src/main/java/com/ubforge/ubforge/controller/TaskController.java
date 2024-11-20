@@ -5,45 +5,62 @@ import org.springframework.http.ResponseEntity;
 
 import com.ubforge.ubforge.model.Task;
 import com.ubforge.ubforge.service.TaskService;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
 
+
+//to do permission
 @RestController
+@RequestMapping("task")
 public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    @PostMapping("/api/createTask")
+    @PostMapping("/create")
     public ResponseEntity<Void> createTask(@RequestBody Task task) {
         taskService.createTask(task);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/api/getAllTasks")
+    @GetMapping("/getAll")
     public ResponseEntity<Iterable<Task>> getAllTasks() {
         return ResponseEntity.ok(taskService.getAllTasks());
     }
 
-    @PostMapping("/api/updateTask")
-    public ResponseEntity<Void> updateTask(@RequestBody Task task) {
-        taskService.updateTask(task);
+    @GetMapping("/getTasksByUserId/{id}")
+    public ResponseEntity<Iterable<Task>> getTasksByUserId(@PathVariable int id) {
+        return ResponseEntity.ok(taskService.getTaskByUserId(id));
+        
+    }
+    
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Void> updateTask(@PathVariable int id, @RequestBody Task task) {
+        taskService.updateTask(id,task);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/api/deleteTask")
-    public ResponseEntity<Void> deleteTask(@RequestBody int id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable int id) {
         taskService.deleteTask(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/api/getTaskById")
-    public ResponseEntity<Task> getTaskById(@RequestBody int id) {
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<Task> getTaskById(@PathVariable int id) {
         return ResponseEntity.ok(taskService.getTaskById(id));
     }
+
+
 
     
     

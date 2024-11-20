@@ -22,7 +22,11 @@ public class TaskService {
         return taskRepository.findById(id).get();
     }
 
-    public Task updateTask(Task task) {
+    public Task updateTask(int id,Task task) {
+        if (taskRepository.existsById(id)) {
+            task.setId(id);
+            taskRepository.save(task);
+        }
         return taskRepository.save(task);
     }
 
@@ -32,5 +36,9 @@ public class TaskService {
 
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
+    }
+
+    public Iterable<Task> getTaskByUserId(int id) {
+        return taskRepository.findByAssignToId(id);
     } 
 }

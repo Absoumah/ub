@@ -8,5 +8,7 @@ import com.ubforge.ubforge.model.Task;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
+    Iterable<Task> findByAssignToId(int id);
+
     
 }

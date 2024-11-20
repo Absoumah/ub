@@ -1,9 +1,13 @@
 package com.ubforge.ubforge.model;
 
+import java.sql.Date;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Issue {
@@ -11,15 +15,31 @@ public class Issue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int issue_id;
-    private String issue_title;
-    private String issue_description;
-    private String issue_status;
-    private String issue_priority;
-    //private User issue_author;
 
-    // public User getIssue_author() {
-    //     return issue_author;
-    // }
+    @Column(name = "issue_title")
+    private String issue_title;
+
+    @Column(name = "issue_description")
+    private String issue_description;
+
+    @Column(name = "issue_status")
+    private String issue_status;
+
+    @Column(name = "issue_priority")
+    private String issue_priority;
+
+    @ManyToOne
+    private User issue_author;
+
+    @ManyToOne
+    private Project project_id;
+
+    @Column(name = "issue_date_created")
+    private Date issue_date_created;
+
+    public User getIssue_author() {
+        return issue_author;
+    }
 
     public String getIssue_description() {
         return issue_description;
@@ -41,9 +61,9 @@ public class Issue {
         return issue_title;
     }
 
-    // public void setIssue_author(User issue_author) {
-    //     this.issue_author = issue_author;
-    // }
+    public void setIssue_author(User issue_author) {
+        this.issue_author = issue_author;
+    }
 
     public void setIssue_description(String issue_description) {
         this.issue_description = issue_description;
@@ -65,7 +85,6 @@ public class Issue {
         this.issue_title = issue_title;
     }
     
-
 
     
 }

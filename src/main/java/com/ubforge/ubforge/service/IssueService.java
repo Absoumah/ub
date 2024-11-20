@@ -21,8 +21,16 @@ public class IssueService {
         return issueRepository.findAll();
     }
     
-    public Issue updateIssue(Issue issue) {
-        return issueRepository.save(issue);
+     public Issue updateIssue(int id, Issue issue) {
+        if (issueRepository.existsById(id)) {
+            issue.setIssue_id(id);
+            return issueRepository.save(issue);
+        }
+        return null;
+    }
+
+    public void deleteIssue(int id) {
+        issueRepository.deleteById(id);
     }
     
 }

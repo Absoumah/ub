@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.ubforge.ubforge.model.Project;
 import com.ubforge.ubforge.repository.ProjectRepository;
 
@@ -21,7 +20,7 @@ public class ProjectService {
     }
 
     //read project by id
-    public Optional<Project> getProjectById(Long id) {
+    public Optional<Project> getProjectById(int id) {
         return projectRepository.findById(id);
     }
 
@@ -31,12 +30,15 @@ public class ProjectService {
     }
 
     //update project
-    public void updateProject(Project project) {
-        projectRepository.save(project);
+    public void updateProject(int id, Project project) {
+        if (projectRepository.existsById(id)) {
+            project.setId(id);
+            projectRepository.save(project);
+        }
     }
 
     //delete project
-    public void deleteProject(Long id) {
+    public void deleteProject(int id) {
         projectRepository.deleteById(id);
     }
 
