@@ -11,28 +11,28 @@ public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String title;
-    private String description;
+    private Long project_id;
+    private String project__title;
+    private String project_description;
 
     public String getDescription() {
-        return description;
+        return project_description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.project__title = description;
     }
 
     public Long getId() {
-        return id;
+        return project_id;
     }
 
     public String getTitle() {
-        return title;
+        return project__title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.project__title = title;
     }
 
 

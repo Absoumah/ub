@@ -13,17 +13,17 @@ public class Task {
     private String task_title;
     private String task_description;
     private String task_status;
-    private Issue issue;
+    //private Issue issue;
     //private User task_autor;
 
     
-    public Issue getIssue() {
-        return issue;
-    }
+    // public Issue getIssue() {
+    //     return issue;
+    // }
 
-    public void setIssue(Issue issue) {
-        this.issue = issue;
-    }
+    // public void setIssue(Issue issue) {
+    //     this.issue = issue;
+    // }
 
     // public User getTask_autor() {
     //     return task_autor;

@@ -15,11 +15,11 @@ public class Issue {
     private String issue_description;
     private String issue_status;
     private String issue_priority;
-    private User issue_author;
+    //private User issue_author;
 
-    public User getIssue_author() {
-        return issue_author;
-    }
+    // public User getIssue_author() {
+    //     return issue_author;
+    // }
 
     public String getIssue_description() {
         return issue_description;
