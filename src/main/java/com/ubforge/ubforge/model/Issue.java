@@ -7,9 +7,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "issues")
 public class Issue {
 
     @Id
@@ -29,9 +32,11 @@ public class Issue {
     private String issue_priority;
 
     @ManyToOne
+    @JoinColumn(name = "issue_author", referencedColumnName = "user_id")    
     private User issue_author;
 
     @ManyToOne
+    @JoinColumn(name = "project_id", referencedColumnName = "project_id")
     private Project project_id;
 
     @Column(name = "issue_date_created")
