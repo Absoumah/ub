@@ -1,6 +1,7 @@
 package com.ubforge.ubforge.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,8 +9,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.CascadeType;
 
 @Entity
 @Table(name = "issues")
@@ -35,12 +40,19 @@ public class Issue {
     @JoinColumn(name = "issue_author", referencedColumnName = "user_id")    
     private User issue_author;
 
+    @ManyToMany
+    @JoinTable(name = "assignedissues")
+    private List<User> assignedTo;
+
     @ManyToOne
     @JoinColumn(name = "project_id", referencedColumnName = "project_id")
     private Project project_id;
 
     @Column(name = "issue_date_created")
     private Date issue_date_created;
+
+    @OneToMany(mappedBy = "issue")
+    private List<Task> tasks;
 
     public User getIssue_author() {
         return issue_author;

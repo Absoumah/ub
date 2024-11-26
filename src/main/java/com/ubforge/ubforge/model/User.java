@@ -1,10 +1,16 @@
 package com.ubforge.ubforge.model;
 
+import java.util.List;
+
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,6 +32,9 @@ public class User {
 
     @Column(name = "role")
     private String role;
+
+    @ManyToMany(mappedBy = "assignedTo")
+    private List<Issue> projects;
 
 
     public int getId() {
