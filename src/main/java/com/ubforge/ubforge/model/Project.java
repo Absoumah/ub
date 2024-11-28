@@ -2,15 +2,11 @@ package com.ubforge.ubforge.model;
 
 
 import java.sql.Date;
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,7 +18,7 @@ public class Project {
     private int project_id;
 
     @Column(name = "project_title")
-    private String project__title;
+    private String project_title;
 
     @Column(name = "project_description")
     private String project_description;
@@ -33,18 +29,12 @@ public class Project {
     @Column(name = "project_date_created")
     private Date project_date_created;
 
-    // @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
-    // private List<User> users;
-    
-    @OneToMany(mappedBy = "project_id", cascade = CascadeType.ALL)
-    private List<Issue> issues;
-
     public String getDescription() {
         return project_description;
     }
 
     public void setDescription(String description) {
-        this.project__title = description;
+        this.project_description = description;
     }
 
     public int getId() {
@@ -52,16 +42,33 @@ public class Project {
     }
 
     public String getTitle() {
-        return project__title;
+        return project_title;
     }
 
     public void setTitle(String title) {
-        this.project__title = title;
+        this.project_title = title;
     }
 
     public void setId(int id) {
         this.project_id = id;
     }
+
+    public String getStatus() {
+        return project_status;
+    }
+
+    public void setStatus(String status) {
+        this.project_status = status;
+    }
+
+    public Date getDateCreated() {
+        return project_date_created;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.project_date_created = dateCreated;
+    }
+    
 
 
 

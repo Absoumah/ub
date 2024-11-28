@@ -1,5 +1,7 @@
 package com.ubforge.ubforge.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,8 +31,8 @@ public class ProjectController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/getById{id}")
-    public ResponseEntity<Project> getProjectById(@PathVariable int id) {
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Optional<Project>> getProjectById(@PathVariable int id) {
         return ResponseEntity.ok(projectService.getProjectById(id));
     }
 
@@ -50,6 +52,5 @@ public class ProjectController {
         projectService.deleteProject(id);
         return ResponseEntity.ok().build();
     }
-    
     
 }

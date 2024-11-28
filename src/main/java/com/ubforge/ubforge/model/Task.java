@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 @Table(name = "tasks")
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int task_id;
 
     @Column(name = "task_title")
@@ -27,11 +27,11 @@ public class Task {
     @Column(name = "task_status")
     private String task_status;
 
-    @ManyToOne
-    private Issue issue;
+    @Column(name = "issue_id")
+    private int issue_id;
 
-    @ManyToOne
-    private User task_autor;
+    @Column(name = "task_author")
+    private int task_author;
 
     @ManyToOne
     @JoinColumn(name = "assign_to", referencedColumnName = "user_id")
@@ -43,21 +43,28 @@ public class Task {
     @Column(name = "task_priority")
     private String task_priority;
 
-    
-    public Issue getIssue() {
-        return issue;
+    public String getTask_priority() {
+        return task_priority;
     }
 
-    public void setIssue(Issue issue) {
-        this.issue = issue;
+    public void setTask_priority(String task_priority) {
+        this.task_priority = task_priority;
     }
 
-    public User getTask_autor() {
-        return task_autor;
+    public Date getTask_date_created() {
+        return task_date_created;
     }
 
-    public void setTask_autor(User task_autor) {
-        this.task_autor = task_autor;
+    public void setTask_date_created(Date task_date_created) {
+        this.task_date_created = task_date_created;
+    }
+
+    public int getIssue_id() {
+        return issue_id;
+    }
+
+    public void setIssue_id(int issue_id) {
+        this.issue_id = issue_id;
     }
 
     public int getTask_id() {
@@ -102,5 +109,13 @@ public class Task {
 
     public void setAssignTo(User assignTo) {
         this.assignTo = assignTo;
+    }
+
+    public int getTask_author() {
+        return task_author;
+    }
+
+    public void setTask_autor(int task_author) {
+        this.task_autor = task_author;
     }
 }

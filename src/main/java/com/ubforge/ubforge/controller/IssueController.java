@@ -35,6 +35,12 @@ public class IssueController {
         return ResponseEntity.ok(issueService.getAllIssues());
     }
 
+    //getById
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Issue> getIssueById(@PathVariable int id) {
+        return ResponseEntity.ok(issueService.getIssueById(id));
+    }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<Issue> updateIssue(@PathVariable int id, @RequestBody Issue issue) {
         return ResponseEntity.ok(issueService.updateIssue(id, issue));

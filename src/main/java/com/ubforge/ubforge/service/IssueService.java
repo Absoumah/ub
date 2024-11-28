@@ -32,5 +32,9 @@ public class IssueService {
     public void deleteIssue(int id) {
         issueRepository.deleteById(id);
     }
+
+    public Issue getIssueById(int id) {
+        return issueRepository.findById(id).orElse(null);
+    }
     
 }

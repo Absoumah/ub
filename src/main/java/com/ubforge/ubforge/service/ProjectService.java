@@ -1,6 +1,7 @@
 package com.ubforge.ubforge.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class ProjectService {
     }
 
     //read project by id
-    public Project getProjectById(int id) {
+    public Optional<Project> getProjectById(int id) {
         return projectRepository.findById(id);
     }
 
@@ -40,5 +41,6 @@ public class ProjectService {
     public void deleteProject(int id) {
         projectRepository.deleteById(id);
     }
+
 
 }
